@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="Exercise Physiology in Perth — Agility Rehabilitation. Evidence-based, individualised exercise programs for injury recovery, chronic pain, NDIS, workers compensation and post-surgery rehabilitation. Clinics in East Victoria Park &amp; Kelmscott, plus mobile visits."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+  body { margin: 0; -webkit-font-smoothing: antialiased; }
+  a { color: #E15B1F; text-decoration: none; }
+  a:hover { color: #B84719; }
+  * { box-sizing: border-box; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes megaFade { from { opacity: 0; transform: translate(-50%, -6px); } to { opacity: 1; transform: translate(-50%, 0); } }
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes overlayFade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes linkIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="0,0" style="display:block;width:0;height:0;overflow:hidden;position:absolute;"></x-import>
+
+<div style="font-family: Inter, sans-serif; color: #1F2937; background: #FFFFFF; overflow-x: hidden;">
+
+  <!-- Utility bar -->
+  <div style="background: #1F2937; color: #E9E4DD;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 8px clamp(20px, 5vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 13px; flex-wrap: wrap;">
+      <span style="opacity: 0.85;">Perth clinics: East Victoria Park &amp; Kelmscott — plus mobile visits</span>
+      <a href="tel:0861628145" style="color: #FFB088; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.11 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.66 2.62a2 2 0 0 1-.45 2.11L8.09 9.63a16 16 0 0 0 6 6l1.18-1.18a2 2 0 0 1 2.11-.45c.84.32 1.72.54 2.62.66A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        (08) 6162 8145
+      </a>
+    </div>
+  </div>
+
+  <!-- Header / Nav -->
+  <header style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.94); backdrop-filter: blur(10px); border-bottom: 1px solid #E9E4DD;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 14px clamp(20px, 5vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+      <a href="home.dc.html" style="display: flex; align-items: center; gap: 10px;">
+        <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M6 28L18 8" stroke="#E15B1F" stroke-width="6" stroke-linecap="round"/><path d="M16 28L28 8" stroke="#1F2937" stroke-width="6" stroke-linecap="round"/><path d="M26 28L34 14" stroke="#E15B1F" stroke-width="6" stroke-linecap="round" opacity="0.55"/></svg>
+        <span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: 0.01em; color: #1F2937;">AGILITY</span>
+      </a>
+
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <nav style="display: flex; align-items: center; gap: 30px;">
+          <a href="about.dc.html" style="color: #1F2937; font-weight: 600; font-size: 15px; padding-bottom: 4px; background-image: linear-gradient(90deg, #E15B1F, #E15B1F); background-size: 0% 2px; background-repeat: no-repeat; background-position: left bottom; transition: background-size 0.3s ease, color 0.2s ease;" style-hover="color: #E15B1F; background-size: 100% 2px;">About</a>
+          <div style="position: relative;">
+            <button onClick="{{ toggleServices }}" aria-expanded="{{ servicesOpen }}" style="display: flex; align-items: center; gap: 6px; background: transparent; border: none; cursor: pointer; color: #E15B1F; font-weight: 700; font-size: 15px; font-family: Inter, sans-serif; padding: 0;">
+              Services
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="transform: {{ servicesChevron }}; transition: transform 0.2s ease;"><path d="M6 9l6 6 6-6" stroke="#E15B1F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <sc-if value="{{ servicesOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="display: contents;">
+                <div onClick="{{ closeServices }}" style="position: fixed; inset: 0; z-index: 69;"></div>
+                <div style="position: absolute; top: calc(100% + 18px); left: 50%; transform: translateX(-50%); z-index: 70; width: 640px; background: #fff; border-radius: 20px; box-shadow: 0 24px 56px rgba(31,41,55,0.18); border: 1px solid #ECE6DD; padding: 20px; display: grid; grid-template-columns: 220px 1fr; gap: 18px; animation: megaFade 0.18s ease both;">
+                  <a href="exercise-physiology.dc.html" onClick="{{ closeServices }}" style="display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; background: #F7F5F1;">
+                    <div style="aspect-ratio: 16/10; overflow: hidden;"><img src="images/gym-based.jpg" alt="" style="width:100%;height:100%;object-fit:cover;"/></div>
+                    <div style="padding: 14px 16px;">
+                      <div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 15px; color: #1F2937; margin-bottom: 4px;">Exercise Physiology</div>
+                      <div style="font-size: 12.5px; color: #5B6472; line-height: 1.5;">Our core service — assessment, program design &amp; 1:1 sessions.</div>
+                    </div>
+                  </a>
+                  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px;">
+                    <sc-for list="{{ serviceLinks }}" as="s" hint-placeholder-count="6">
+                      <a href="{{ s.page }}" onClick="{{ closeServices }}" style="display: flex; align-items: flex-start; gap: 10px; padding: 10px; border-radius: 10px;" style-hover="background: #F7F5F1;">
+                        <div style="width: 34px; height: 34px; border-radius: 9px; background: #FBEAE0; display: flex; align-items: center; justify-content: center; flex-shrink: 0;" dangerouslySetInnerHTML="{{ s.icon }}"></div>
+                        <div>
+                          <div style="font-weight: 700; font-size: 13.5px; color: #1F2937;">{{ s.name }}</div>
+                          <div style="font-size: 11.5px; color: #8A8478; line-height: 1.4; margin-top: 2px;">{{ s.desc }}</div>
+                        </div>
+                      </a>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+          <a href="contact.dc.html#locations" style="color: #1F2937; font-weight: 600; font-size: 15px; padding-bottom: 4px; background-image: linear-gradient(90deg, #E15B1F, #E15B1F); background-size: 0% 2px; background-repeat: no-repeat; background-position: left bottom; transition: background-size 0.3s ease, color 0.2s ease;" style-hover="color: #E15B1F; background-size: 100% 2px;">Locations</a>
+          <a href="contact.dc.html" style="color: #1F2937; font-weight: 600; font-size: 15px; padding-bottom: 4px; background-image: linear-gradient(90deg, #E15B1F, #E15B1F); background-size: 0% 2px; background-repeat: no-repeat; background-position: left bottom; transition: background-size 0.3s ease, color 0.2s ease;" style-hover="color: #E15B1F; background-size: 100% 2px;">Contact</a>
+          <a href="contact.dc.html#book" style="background: #E15B1F; color: #fff; font-weight: 700; font-size: 15px; padding: 12px 22px; border-radius: 999px; box-shadow: 0 8px 20px rgba(225,91,31,0.28); white-space: nowrap;" style-hover="background: #B84719; transform: translateY(-1px);">Book Appointment</a>
+        </nav>
+      </sc-if>
+
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #E9E4DD; background: #fff; display: flex; align-items: center; justify-content: center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="#1F2937" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </sc-if>
+    </div>
+
+  </header>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 100; background: linear-gradient(165deg, #FFFFFF 0%, #FDF3EC 100%); display: flex; flex-direction: column; animation: overlayFade 0.35s cubic-bezier(.16,.84,.44,1) both; overflow-y: auto;">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 18px clamp(20px, 5vw, 48px);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <svg width="30" height="30" viewBox="0 0 40 40" fill="none"><path d="M6 28L18 8" stroke="#E15B1F" stroke-width="6" stroke-linecap="round"/><path d="M16 28L28 8" stroke="#1F2937" stroke-width="6" stroke-linecap="round"/><path d="M26 28L34 14" stroke="#E15B1F" stroke-width="6" stroke-linecap="round" opacity="0.55"/></svg>
+          <span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 19px; color: #1F2937;">AGILITY</span>
+        </div>
+        <button onClick="{{ toggleMenu }}" aria-label="Close menu" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #E9E4DD; background: #fff; display: flex; align-items: center; justify-content: center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#1F2937" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <nav style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 8px clamp(20px, 5vw, 48px) 24px; gap: 2px;">
+        <a href="about.dc.html" style="font-family: Manrope, sans-serif; font-weight: 600; font-size: clamp(30px, 9vw, 40px); color: #1F2937; padding: 14px 0; border-bottom: 1px solid #ECE6DD; display: flex; align-items: center; justify-content: space-between; animation: linkIn 0.5s cubic-bezier(.16,.84,.44,1) both; animation-delay: 0.05s;">
+          About
+          <span style="font-size: 13px; font-weight: 700; color: #C7C0B4;">01</span>
+        </a>
+        <div style="animation: linkIn 0.5s cubic-bezier(.16,.84,.44,1) both; animation-delay: 0.1s; border-bottom: 1px solid #ECE6DD;">
+          <button onClick="{{ toggleMobileServices }}" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: transparent; border: none; color: #E15B1F; font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(30px, 9vw, 40px); padding: 14px 0; cursor: pointer;">
+            Services
+            <span style="display:flex; align-items:center; gap: 10px;">
+              <span style="font-size: 13px; font-weight: 700; color: #C7C0B4;">02</span>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="transform: {{ mobileServicesChevron }}; transition: transform 0.25s ease; flex-shrink: 0;"><path d="M6 9l6 6 6-6" stroke="#E15B1F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </button>
+          <sc-if value="{{ mobileServicesOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 18px; animation: slideDown 0.25s ease both;">
+              <a href="exercise-physiology.dc.html" style="color: #E15B1F; font-weight: 700; font-size: 17px; padding: 10px 4px; min-height: 44px; display: flex; align-items: center;">Exercise Physiology</a>
+              <sc-for list="{{ serviceLinks }}" as="s" hint-placeholder-count="6">
+                <a href="{{ s.page }}" style="color: #5B6472; font-weight: 600; font-size: 16px; padding: 10px 4px; min-height: 44px; display: flex; align-items: center;">{{ s.name }}</a>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <a href="contact.dc.html#locations" style="font-family: Manrope, sans-serif; font-weight: 600; font-size: clamp(30px, 9vw, 40px); color: #1F2937; padding: 14px 0; border-bottom: 1px solid #ECE6DD; display: flex; align-items: center; justify-content: space-between; animation: linkIn 0.5s cubic-bezier(.16,.84,.44,1) both; animation-delay: 0.15s;">
+          Locations
+          <span style="font-size: 13px; font-weight: 700; color: #C7C0B4;">03</span>
+        </a>
+        <a href="contact.dc.html" style="font-family: Manrope, sans-serif; font-weight: 600; font-size: clamp(30px, 9vw, 40px); color: #1F2937; padding: 14px 0; display: flex; align-items: center; justify-content: space-between; animation: linkIn 0.5s cubic-bezier(.16,.84,.44,1) both; animation-delay: 0.2s;">
+          Contact
+          <span style="font-size: 13px; font-weight: 700; color: #C7C0B4;">04</span>
+        </a>
+      </nav>
+      <div style="padding: 20px clamp(20px, 5vw, 48px) clamp(28px, 6vw, 40px); border-top: 1px solid #ECE6DD; display: flex; flex-direction: column; gap: 14px; animation: linkIn 0.5s cubic-bezier(.16,.84,.44,1) both; animation-delay: 0.3s;">
+        <a href="tel:0861628145" style="display: flex; align-items: center; gap: 10px; color: #1F2937; font-weight: 700; font-size: 17px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.11 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.66 2.62a2 2 0 0 1-.45 2.11L8.09 9.63a16 16 0 0 0 6 6l1.18-1.18a2 2 0 0 1 2.11-.45c.84.32 1.72.54 2.62.66A2 2 0 0 1 22 16.92z" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          (08) 6162 8145
+        </a>
+        <a href="contact.dc.html#book" style="background: #E15B1F; color: #fff; font-weight: 700; font-size: 17px; padding: 16px 24px; border-radius: 999px; text-align: center; box-shadow: 0 12px 28px rgba(225,91,31,0.3);">Book Appointment</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- HERO -->
+  <section style="position: relative; padding: clamp(48px, 8vw, 96px) clamp(20px, 5vw, 48px); background: linear-gradient(180deg, #FDF3EC 0%, #FFFFFF 72%);">
+    <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: minmax(320px, 1fr) minmax(320px, 1.05fr); gap: clamp(32px, 5vw, 64px); align-items: center;">
+      <div style="animation: fadeUp 0.7s ease both;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #F1D9C8; color: #B84719; font-weight: 700; font-size: 13px; padding: 8px 16px; border-radius: 999px; margin-bottom: 24px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="#B84719" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="#B84719" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          ESSA-Accredited Exercise Physiologists
+        </div>
+        <h1 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(2.2rem, 4.4vw, 3.4rem); line-height: 1.1; letter-spacing: -0.02em; color: #1F2937; margin: 0 0 20px;">Exercise Physiology, Perth</h1>
+        <p style="font-size: clamp(1.05rem, 1.3vw, 1.2rem); line-height: 1.7; color: #5B6472; max-width: 540px; margin: 0 0 32px;">Evidence-based exercise programs designed by university-qualified Exercise Physiologists — for injury recovery, chronic pain, chronic disease management and everyday function. Individualised. Local. Genuinely effective.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 36px;">
+          <a href="contact.dc.html#book" style="background: #E15B1F; color: #fff; font-weight: 700; font-size: 16px; padding: 16px 30px; border-radius: 999px; box-shadow: 0 12px 28px rgba(225,91,31,0.3); display: inline-flex; align-items: center; gap: 8px;" style-hover="background: #B84719; transform: translateY(-2px);">Book an Appointment</a>
+          <a href="tel:0861628145" style="background: #fff; color: #1F2937; font-weight: 700; font-size: 16px; padding: 16px 30px; border-radius: 999px; border: 2px solid #1F2937; display: inline-flex; align-items: center; gap: 10px;" style-hover="border-color: #E15B1F; color: #E15B1F;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.11 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.66 2.62a2 2 0 0 1-.45 2.11L8.09 9.63a16 16 0 0 0 6 6l1.18-1.18a2 2 0 0 1 2.11-.45c.84.32 1.72.54 2.62.66A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            (08) 6162 8145
+          </a>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <sc-for list="{{ heroBadges }}" as="b" hint-placeholder-count="3">
+            <div style="display: flex; align-items: center; gap: 6px; background: #fff; border: 1px solid #EEE7DE; border-radius: 999px; padding: 8px 14px; font-size: 13px; font-weight: 600; color: #1F2937;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#E15B1F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {{ b }}
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="position: relative;">
+        <div style="border-radius: 28px; overflow: hidden; box-shadow: 0 30px 60px rgba(31,41,55,0.16); aspect-ratio: 4/4.6;">
+          <image-slot id="ep-hero" shape="rect" src="images/exphys-group-mat-class.jpg" placeholder="Exercise physiologist assessing a patient's shoulder mobility in a bright clinic" style="width:100%;height:100%;"></image-slot>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS EXERCISE PHYSIOLOGY -->
+  <section style="padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 48px);">
+    <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: minmax(280px, 0.95fr) minmax(320px, 1.05fr); gap: clamp(32px, 6vw, 72px); align-items: center;">
+      <div style="border-radius: 24px; overflow: hidden; box-shadow: 0 20px 44px rgba(31,41,55,0.1); aspect-ratio: 4/3.4;">
+        <image-slot id="ep-whatis" shape="rect" src="images/physio-shoulder-exam.jpg" placeholder="Exercise physiologist demonstrating a movement pattern alongside a patient" style="width:100%;height:100%;"></image-slot>
+      </div>
+      <div>
+        <div style="color: #E15B1F; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">What is exercise physiology?</div>
+        <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.15; color: #1F2937; margin: 0 0 18px;">Exercise, prescribed like medicine</h2>
+        <p style="font-size: 17px; line-height: 1.75; color: #5B6472; margin: 0 0 16px;">Exercise physiologists are university-qualified allied health professionals who specialise in delivering exercise for the prevention and management of injuries and chronic disease. We study how the healthy — and the injured or unhealthy — body responds to movement, and use that science to guide every program we write.</p>
+        <p style="font-size: 17px; line-height: 1.75; color: #5B6472; margin: 0 0 28px;">All Agility Rehabilitation exercise physiologists are accredited with Exercise &amp; Sport Science Australia (ESSA), our profession's peak body — so you can be confident you're in qualified, evidence-based hands.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px;">
+          <div>
+            <div style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 22px; color: #1F2937;">2012</div>
+            <div style="font-size: 13px; color: #5B6472;">Founded in Perth</div>
+          </div>
+          <div>
+            <div style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 22px; color: #1F2937;">2,000+</div>
+            <div style="font-size: 13px; color: #5B6472;">Patients supported</div>
+          </div>
+          <div>
+            <div style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 22px; color: #1F2937;">ESSA</div>
+            <div style="font-size: 13px; color: #5B6472;">Accredited team</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONDITIONS WE HELP -->
+  <section id="conditions" style="padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 48px); background: #F7F5F1; scroll-margin-top: 90px;">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <div style="max-width: 680px; margin: 0 auto 48px; text-align: center;">
+        <div style="color: #E15B1F; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">Can this help me?</div>
+        <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.4rem); color: #1F2937; margin: 0 0 14px;">Conditions we help every day</h2>
+        <p style="font-size: 17px; line-height: 1.7; color: #5B6472; margin: 0;">Evidence for exercise therapy in injury recovery and disease management is extensive. Here's a snapshot of what we see most.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+        <sc-for list="{{ conditions }}" as="c" hint-placeholder-count="8">
+          <div style="background: #fff; border: 1px solid #ECE6DD; border-radius: 20px; padding: 28px 24px;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 32px rgba(31,41,55,0.08); border-color: #F1D9C8;">
+            <div style="width: 52px; height: 52px; border-radius: 14px; background: #FBEAE0; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;" dangerouslySetInnerHTML="{{ c.icon }}"></div>
+            <h3 style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 16.5px; color: #1F2937; margin: 0 0 8px;">{{ c.name }}</h3>
+            <p style="font-size: 14px; line-height: 1.6; color: #5B6472; margin: 0;">{{ c.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+      <p style="text-align: center; font-size: 14px; color: #8A8478; margin: 32px 0 0;">Not sure if we can help with your condition? <a href="contact.dc.html" style="font-weight: 700;">Ask our team</a> — there's no obligation.</p>
+    </div>
+  </section>
+
+  <!-- SERVICES / WHAT'S INCLUDED -->
+  <section style="padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 48px);">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <div style="max-width: 680px; margin: 0 auto 48px; text-align: center;">
+        <div style="color: #E15B1F; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">Our approach</div>
+        <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.4rem); color: #1F2937; margin: 0 0 14px;">What's included in your program</h2>
+        <p style="font-size: 17px; line-height: 1.7; color: #5B6472; margin: 0;">Every service below is built around a thorough assessment and your personal goals.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
+          <div style="background: #fff; border: 1px solid #ECE6DD; border-radius: 24px; padding: 32px 28px;" style-hover="box-shadow: 0 16px 32px rgba(31,41,55,0.08); transform: translateY(-4px); border-color: #F1D9C8;">
+            <div style="width: 52px; height: 52px; border-radius: 14px; background: #F7F5F1; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;" dangerouslySetInnerHTML="{{ s.icon }}"></div>
+            <h3 style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px; color: #1F2937; margin: 0 0 10px;">{{ s.name }}</h3>
+            <p style="font-size: 15px; line-height: 1.7; color: #5B6472; margin: 0;">{{ s.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSESSMENT PROCESS -->
+  <section style="padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 48px); background: #F7F5F1;">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <div style="max-width: 680px; margin: 0 auto 56px; text-align: center;">
+        <div style="color: #E15B1F; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">How it works</div>
+        <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.4rem); color: #1F2937; margin: 0 0 14px;">Your journey with us</h2>
+        <p style="font-size: 17px; line-height: 1.7; color: #5B6472; margin: 0;">A clear, simple process from first contact to long-term progress.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; position: relative;">
+        <sc-for list="{{ processSteps }}" as="p" hint-placeholder-count="5">
+          <div style="background: #fff; border-radius: 20px; padding: 28px 20px; text-align: center; border: 1px solid #ECE6DD; position: relative;">
+            <div style="width: 44px; height: 44px; border-radius: 999px; background: #E15B1F; color: #fff; font-family: Manrope, sans-serif; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">{{ p.step }}</div>
+            <div style="width: 48px; height: 48px; border-radius: 12px; background: #FBEAE0; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;" dangerouslySetInnerHTML="{{ p.icon }}"></div>
+            <h3 style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 15.5px; color: #1F2937; margin: 0 0 8px;">{{ p.title }}</h3>
+            <p style="font-size: 13.5px; line-height: 1.55; color: #5B6472; margin: 0;">{{ p.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOBILE EXERCISE PHYSIOLOGY -->
+  <section id="mobile" style="padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 48px); scroll-margin-top: 90px;">
+    <div style="max-width: 1280px; margin: 0 auto; background: #1F2937; border-radius: 32px; overflow: hidden; display: grid; grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);">
+      <div style="padding: clamp(36px, 5vw, 56px);">
+        <div style="color: #FFB088; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">Mobile Exercise Physiology</div>
+        <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.7rem, 2.8vw, 2.2rem); color: #fff; margin: 0 0 16px;">We come to you</h2>
+        <p style="font-size: 16px; line-height: 1.75; color: #D8DEE7; margin: 0 0 24px;">Can't easily get to a clinic? Our exercise physiologists bring assessments and one-on-one sessions to your home, workplace or aged care facility — ideal for those with limited mobility, transport barriers or a busy schedule.</p>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px;">
+          <sc-for list="{{ mobileBenefits }}" as="m" hint-placeholder-count="4">
+            <div style="display: flex; align-items: flex-start; gap: 10px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0; margin-top: 2px;"><path d="M4 12l5 5L20 6" stroke="#FFB088" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span style="font-size: 15px; color: #D8DEE7;">{{ m }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <a href="contact.dc.html#book" style="background: #E15B1F; color: #fff; font-weight: 700; font-size: 15.5px; padding: 14px 26px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px;" style-hover="background: #ff7a3d;">Enquire About Mobile Visits</a>
+      </div>
+      <div style="min-height: 280px;">
+        <image-slot id="ep-mobile" shape="rect" src="images/mobile-service.jpg" placeholder="Exercise physiologist running a session in a patient's home" style="width:100%;height:100%;"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS TEASER -->
+  <section id="locations-teaser" style="padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 48px); background: #F7F5F1;">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <div style="max-width: 640px; margin: 0 auto 48px; text-align: center;">
+        <div style="color: #E15B1F; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">Locations</div>
+        <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.4rem); color: #1F2937; margin: 0;">Two Perth clinics, plus mobile visits</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+        <div style="background: #fff; border: 1px solid #ECE6DD; border-radius: 24px; padding: 28px; display: flex; align-items: center; gap: 18px;">
+          <div style="width: 52px; height: 52px; border-radius: 14px; background: #FBEAE0; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12z" stroke="#E15B1F" stroke-width="2"/><circle cx="12" cy="9" r="2.5" stroke="#E15B1F" stroke-width="2"/></svg>
+          </div>
+          <div>
+            <h3 style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 17px; color: #1F2937; margin: 0 0 4px;">East Victoria Park</h3>
+            <p style="font-size: 14px; color: #5B6472; margin: 0 0 8px;">The Leisurelife Centre, 34 Kent St</p>
+            <a href="contact.dc.html#locations" style="color: #E15B1F; font-weight: 700; font-size: 14px;">View map &amp; details →</a>
+          </div>
+        </div>
+        <div style="background: #fff; border: 1px solid #ECE6DD; border-radius: 24px; padding: 28px; display: flex; align-items: center; gap: 18px;">
+          <div style="width: 52px; height: 52px; border-radius: 14px; background: #FBEAE0; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12z" stroke="#E15B1F" stroke-width="2"/><circle cx="12" cy="9" r="2.5" stroke="#E15B1F" stroke-width="2"/></svg>
+          </div>
+          <div>
+            <h3 style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 17px; color: #1F2937; margin: 0 0 4px;">Kelmscott</h3>
+            <p style="font-size: 14px; color: #5B6472; margin: 0 0 8px;">Inside Kelmscott Chiropractic, 6 Page Rd</p>
+            <a href="contact.dc.html#locations" style="color: #E15B1F; font-weight: 700; font-size: 14px;">View map &amp; details →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section style="padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 48px);">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <div style="max-width: 640px; margin: 0 auto 48px; text-align: center;">
+        <div style="color: #E15B1F; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">Why choose us</div>
+        <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.4rem); color: #1F2937; margin: 0;">Why choose Agility Rehabilitation</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+        <sc-for list="{{ whyUs }}" as="w" hint-placeholder-count="4">
+          <div style="background: #F7F5F1; border-radius: 20px; padding: 30px 26px;">
+            <div style="width: 48px; height: 48px; border-radius: 12px; background: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 18px;" dangerouslySetInnerHTML="{{ w.icon }}"></div>
+            <h3 style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 16.5px; color: #1F2937; margin: 0 0 8px;">{{ w.title }}</h3>
+            <p style="font-size: 14.5px; line-height: 1.65; color: #5B6472; margin: 0;">{{ w.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 48px); background: #F7F5F1;">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <div style="max-width: 640px; margin: 0 auto 48px; text-align: center;">
+        <div style="color: #E15B1F; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">Patient stories</div>
+        <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.4rem); color: #1F2937; margin: 0 0 10px;">What our patients say</h2>
+        <p style="font-size: 14px; color: #8A8478; margin: 0;">First two reviews are real; the rest are illustrative pending more submissions.</p>
+      </div>
+      <div style="position: relative;">
+        <div ref="{{ trackRef }}" style="display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px;">
+          <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="4">
+            <div style="background: #fff; border-radius: 20px; padding: 30px 26px; border: 1px solid #ECE6DD; min-width: 300px; max-width: 340px; scroll-snap-align: start; flex-shrink: 0;">
+              <div style="display: flex; gap: 3px; margin-bottom: 16px;">
+                <sc-for list="{{ t.stars }}" as="star" hint-placeholder-count="5"><svg width="16" height="16" viewBox="0 0 24 24" fill="#E15B1F"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21 7.5 13.5 2 9h7z"/></svg></sc-for>
+              </div>
+              <p style="font-size: 15px; line-height: 1.7; color: #374151; margin: 0 0 20px; font-style: italic;">"{{ t.quote }}"</p>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #FBEAE0; display: flex; align-items: center; justify-content: center; font-family: Manrope, sans-serif; font-weight: 700; color: #E15B1F;">{{ t.initial }}</div>
+                <div><div style="font-weight: 700; font-size: 14.5px; color: #1F2937;">{{ t.name }}</div><div style="font-size: 13px; color: #8A8478;">{{ t.context }}</div></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+          <button onClick="{{ scrollPrev }}" aria-label="Previous" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid #ECE6DD; background: #fff; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button onClick="{{ scrollNext }}" aria-label="Next" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid #ECE6DD; background: #fff; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 48px);">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <div style="color: #E15B1F; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">FAQ</div>
+        <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.4rem); color: #1F2937; margin: 0;">Common questions</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="8">
+          <div style="border: 1px solid #ECE6DD; border-radius: 16px; overflow: hidden; background: #fff;">
+            <button onClick="{{ f.toggle }}" style="width: 100%; text-align: left; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; background: transparent; border: none; cursor: pointer;">
+              <span style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; color: #1F2937;">{{ f.q }}</span>
+              <span style="{{ f.iconWrapStyle }}">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#E15B1F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+              <div style="padding: 0 24px 22px; animation: slideDown 0.2s ease both;">
+                <p style="font-size: 15px; line-height: 1.7; color: #5B6472; margin: 0;">{{ f.a }}</p>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section style="padding: clamp(48px, 6vw, 72px) clamp(20px, 5vw, 48px);">
+    <div style="max-width: 1280px; margin: 0 auto; background: linear-gradient(120deg, #1F2937 0%, #33210F 130%); border-radius: 32px; padding: clamp(40px, 6vw, 72px); position: relative; overflow: hidden; text-align: center;">
+      <div style="position: absolute; top: -60px; right: -60px; width: 260px; height: 260px; background: #E15B1F; border-radius: 50%; opacity: 0.18;"></div>
+      <div style="position: absolute; bottom: -80px; left: -40px; width: 220px; height: 220px; background: #E15B1F; border-radius: 50%; opacity: 0.12;"></div>
+      <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3.4vw, 2.6rem); color: #fff; margin: 0 0 16px; position: relative;">Let's get you moving again</h2>
+      <p style="font-size: 17px; color: #D8DEE7; max-width: 520px; margin: 0 auto 32px; position: relative;">Book a consultation with our exercise physiology team today — in-clinic or in your own home.</p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; position: relative;">
+        <a href="contact.dc.html#book" style="background: #E15B1F; color: #fff; font-weight: 700; font-size: 16px; padding: 16px 32px; border-radius: 999px; box-shadow: 0 12px 28px rgba(225,91,31,0.35);" style-hover="background: #ff7a3d;">Book an Appointment</a>
+        <a href="tel:0861628145" style="background: transparent; color: #fff; font-weight: 700; font-size: 16px; padding: 16px 32px; border-radius: 999px; border: 2px solid rgba(255,255,255,0.4);" style-hover="border-color: #fff;">Call (08) 6162 8145</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background: #1F2937; color: #D8DEE7; padding: clamp(48px, 6vw, 72px) clamp(20px, 5vw, 48px) 28px;">
+    <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.12);">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+          <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M6 28L18 8" stroke="#E15B1F" stroke-width="6" stroke-linecap="round"/><path d="M16 28L28 8" stroke="#fff" stroke-width="6" stroke-linecap="round"/><path d="M26 28L34 14" stroke="#E15B1F" stroke-width="6" stroke-linecap="round" opacity="0.55"/></svg>
+          <span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 18px; color: #fff; letter-spacing: 0.01em;">AGILITY</span>
+        </div>
+        <p style="font-size: 14px; line-height: 1.7; color: #A9B0BC; max-width: 280px;">Perth's local exercise physiology team — evidence-based rehabilitation for injury, chronic disease and everyday life.</p>
+        <a href="https://www.facebook.com/Agilityrehabilitation" style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.08); margin-top: 16px; color: #fff;" style-hover="background: #E15B1F;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-9h3l1-4h-4V6.5C13 5.3 13.4 4.5 15.1 4.5H17V1.1C16.6 1 15.4 1 14 1c-2.9 0-4.9 1.8-4.9 5v3H6v4h3.1v9H13z"/></svg>
+        </a>
+      </div>
+      <div>
+        <div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em;">Locations</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14.5px;">
+          <a href="contact.dc.html#locations" style="color: #A9B0BC;" style-hover="color: #FFB088;">East Victoria Park</a>
+          <a href="contact.dc.html#locations" style="color: #A9B0BC;" style-hover="color: #FFB088;">Kelmscott</a>
+          <a href="exercise-physiology.dc.html#mobile" style="color: #A9B0BC;" style-hover="color: #FFB088;">Mobile Services</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em;">Navigation</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14.5px;">
+          <a href="home.dc.html" style="color: #A9B0BC;" style-hover="color: #FFB088;">Home</a>
+          <a href="about.dc.html" style="color: #A9B0BC;" style-hover="color: #FFB088;">About</a>
+          <a href="exercise-physiology.dc.html" style="color: #A9B0BC;" style-hover="color: #FFB088;">Exercise Physiology</a>
+          <a href="contact.dc.html" style="color: #A9B0BC;" style-hover="color: #FFB088;">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em;">Contact</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14.5px;">
+          <a href="tel:0861628145" style="color: #A9B0BC;" style-hover="color: #FFB088;">(08) 6162 8145</a>
+          <a href="mailto:admin@agilityrehab.com.au" style="color: #A9B0BC;" style-hover="color: #FFB088;">admin@agilityrehab.com.au</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1280px; margin: 0 auto; padding-top: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: #7C8494;">
+      <span>© 2026 Agility Rehabilitation. All rights reserved.</span>
+      <span>Design concept for review — not a live site.</span>
+    </div>
+  </footer>
+
+  <!-- FLOATING MOBILE CTA -->
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 60; background: #fff; border-top: 1px solid #E9E4DD; box-shadow: 0 -8px 24px rgba(31,41,55,0.1); padding: 10px 16px; display: flex; gap: 10px;">
+      <a href="tel:0861628145" style="flex: 1; text-align: center; background: #fff; border: 2px solid #1F2937; color: #1F2937; font-weight: 700; font-size: 15px; padding: 12px; border-radius: 999px; min-height: 44px; display: flex; align-items: center; justify-content: center;">Call Now</a>
+      <a href="contact.dc.html#book" style="flex: 1; text-align: center; background: #E15B1F; color: #fff; font-weight: 700; font-size: 15px; padding: 12px; border-radius: 999px; min-height: 44px; display: flex; align-items: center; justify-content: center;">Book Now</a>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+function h(svg) { return { __html: svg }; }
+
+const CONDITIONS = [
+  { name: "Musculoskeletal & Sports Injuries", desc: "Strains, sprains, joint and tendon injuries, arthritis and osteoporosis.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M2 12h5l2-7 4 14 2-7h7" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') },
+  { name: "Post-Surgery Rehabilitation", desc: "Joint replacements, arthroscopies, discectomies, tendon and ligament repairs.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="2" stroke="#E15B1F" stroke-width="2"/><path d="M9 8h6M9 12h6M9 16h3" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') },
+  { name: "Chronic Pain Management", desc: "Persistent pain conditions, supported with graded, sustainable exercise.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-8.5C.5 9 2 5 6 5c2 0 3.5 1.5 4 2.5.5-1 2-2.5 4-2.5 4 0 5.5 4 3.5 7.5C19 16.65 12 21 12 21z" stroke="#E15B1F" stroke-width="2" stroke-linejoin="round"/></svg>') },
+  { name: "Neurological Conditions", desc: "Stroke, brain injury, multiple sclerosis, cerebral palsy and neuropathies.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="10" r="5" stroke="#E15B1F" stroke-width="2"/><circle cx="15" cy="10" r="5" stroke="#E15B1F" stroke-width="2" opacity="0.5"/></svg>') },
+  { name: "Heart & Lung Health", desc: "Cardiovascular disease, hypertension, COPD, asthma and cardiac reconditioning.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><polyline points="3,17 9,11 13,15 21,7" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14,7 21,7 21,14" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') },
+  { name: "Chronic Disease & Metabolic", desc: "Diabetes, obesity, hormonal and metabolic conditions, cancer-related fatigue.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="#E15B1F" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') },
+  { name: "NDIS & Disability Support", desc: "Capacity-building exercise for NDIS plan and self-managed participants.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="#E15B1F" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') },
+  { name: "Older Adults & Falls Prevention", desc: "Strength, balance and mobility programs to support independence.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#E15B1F" stroke-width="2"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') }
+];
+
+const SERVICES = [
+  { name: "Initial Assessment", desc: "A thorough consultation to understand your history, goals and current function.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="12" height="16" rx="2" stroke="#E15B1F" stroke-width="2"/><path d="M9 9h6M9 13h6M9 17h3" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') },
+  { name: "Individualised Exercise Programs", desc: "A program designed specifically for your condition, goals and stage of recovery.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#E15B1F" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="#E15B1F" stroke-width="2"/></svg>') },
+  { name: "One-on-One Exercise Sessions", desc: "Supervised sessions with your exercise physiologist to build strength and confidence.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="2" y="9" width="4" height="6" rx="1" stroke="#E15B1F" stroke-width="2"/><rect x="18" y="9" width="4" height="6" rx="1" stroke="#E15B1F" stroke-width="2"/><path d="M6 12h12" stroke="#E15B1F" stroke-width="2"/></svg>') },
+  { name: "Hydrotherapy", desc: "Pool-based rehabilitation for low-impact strengthening and pain relief.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M2 16c1.5 1.3 3 1.3 4.5 0s3-1.3 4.5 0 3 1.3 4.5 0 3-1.3 4.5 0" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/><path d="M2 20c1.5 1.3 3 1.3 4.5 0s3-1.3 4.5 0 3 1.3 4.5 0 3-1.3 4.5 0" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" opacity="0.5"/></svg>') },
+  { name: "Gym-Based Reconditioning", desc: "Progressive strength and cardiovascular reconditioning in a supportive environment.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M4 8v8M20 8v8M7 6v12M17 6v12" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') },
+  { name: "Progress Reviews", desc: "Regular reassessment to track progress and adjust your program as you improve.", icon: h('<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><polyline points="3,17 9,11 13,15 21,7" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14,7 21,7 21,14" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') }
+];
+
+const PROCESS_STEPS = [
+  { step: "1", title: "Initial Consultation", desc: "We learn about your history, concerns and goals.", icon: h('<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#E15B1F" stroke-width="2" stroke-linejoin="round"/></svg>') },
+  { step: "2", title: "Assessment", desc: "A hands-on functional and movement assessment.", icon: h('<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#E15B1F" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') },
+  { step: "3", title: "Exercise Plan", desc: "A tailored program built around your goals.", icon: h('<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" stroke="#E15B1F" stroke-width="2"/><path d="M9 8h6M9 12h6M9 16h3" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') },
+  { step: "4", title: "Exercise Sessions", desc: "Supervised, progressive sessions in clinic or at home.", icon: h('<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="9" width="4" height="6" rx="1" stroke="#E15B1F" stroke-width="2"/><rect x="18" y="9" width="4" height="6" rx="1" stroke="#E15B1F" stroke-width="2"/><path d="M6 12h12" stroke="#E15B1F" stroke-width="2"/></svg>') },
+  { step: "5", title: "Progress Reviews", desc: "Regular reassessment to keep you moving forward.", icon: h('<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><polyline points="3,17 9,11 13,15 21,7" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') }
+];
+
+const WHY_US = [
+  { title: "ESSA-Accredited Team", desc: "Every exercise physiologist is accredited with Exercise & Sport Science Australia.", icon: h('<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="#E15B1F" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') },
+  { title: "Evidence-Based Programs", desc: "Individualised exercise plans grounded in current clinical research, not templates.", icon: h('<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="10" r="6" stroke="#E15B1F" stroke-width="2"/><path d="M13.5 14.5L19 20" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') },
+  { title: "Clinic & Mobile Care", desc: "See us in East Victoria Park or Kelmscott, or have us come to your home or workplace.", icon: h('<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12z" stroke="#E15B1F" stroke-width="2"/><circle cx="12" cy="9" r="2.5" stroke="#E15B1F" stroke-width="2"/></svg>') },
+  { title: "A Genuinely Local Team", desc: "Founded in Perth in 2012 — nearly 2,000 patients supported through recovery since.", icon: h('<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="9" r="3.2" stroke="#E15B1F" stroke-width="2"/><circle cx="16" cy="9" r="3.2" stroke="#E15B1F" stroke-width="2" opacity="0.55"/><path d="M2.5 19c.5-3 3-5 5.5-5s5 2 5.5 5M12.5 19c.4-2.4 2.3-4.3 4.5-4.6" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') }
+];
+
+const TESTIMONIALS = [
+  { name: "Christopher T.", initial: "C", context: "Patient", quote: "All your exercise physiologists are very professional and friendly. They really do care for their patients.", stars: [1,2,3,4,5] },
+  { name: "Ian Lye", initial: "I", context: "Senior Physiotherapist", quote: "Jonny and his team all provide an extremely professional and reliable rehabilitation service and their results have been excellent. I highly recommend Agility Rehabilitation.", stars: [1,2,3,4,5] },
+  { name: "Placeholder — Anne K.", initial: "A", context: "NDIS participant", quote: "A calm, welcoming clinic that never feels clinical. I actually look forward to my sessions.", stars: [1,2,3,4,5] },
+  { name: "Placeholder — Michael R.", initial: "M", context: "Chronic pain management", quote: "Twelve months on and I'm stronger than before my injury. The team never gave up on finding what worked for me.", stars: [1,2,3,4,5] }
+];
+
+const FAQS = [
+  { q: "Do I need a referral to see an exercise physiologist?", a: "No referral is needed for a private appointment. If you have a GP Chronic Disease Management Plan, DVA card, WorkCover/MVA claim or NDIS plan, a referral or plan may allow you to claim a rebate — our team can help you check eligibility." },
+  { q: "Is exercise physiology covered by Medicare, NDIS, DVA, private health or Workers Compensation?", a: "Yes. We work with Medicare Chronic Disease Management plans, DVA, NDIS (plan and self-managed), private health extras cover, income protection insurers and Workers Compensation/MVA claims." },
+  { q: "What conditions can exercise physiology help with?", a: "A wide range — musculoskeletal and sports injuries, post-surgery rehabilitation, chronic pain, neurological conditions, heart and lung health, chronic disease, and falls prevention for older adults, among others." },
+  { q: "What happens at my first appointment?", a: "We start with a thorough consultation and functional assessment to understand your history and goals, then design an individualised exercise plan from there." },
+  { q: "Do you offer mobile or home visit appointments?", a: "Yes — our Mobile Exercise Physiology service brings assessments and sessions to your home, workplace or care facility across the Perth area." },
+  { q: "What should I bring or wear to my appointment?", a: "Comfortable, loose-fitting clothing and supportive footwear. Bring any relevant scans, reports or referral letters if you have them." },
+  { q: "How long are sessions and how many will I need?", a: "Initial consultations typically run 45–60 minutes, with follow-up sessions around 30–45 minutes. The number of sessions depends on your goals and condition — we'll discuss a plan at your first visit." },
+  { q: "Where are your clinics located?", a: "We have clinics in East Victoria Park (inside The Leisurelife Centre) and Kelmscott (inside Kelmscott Chiropractic), plus mobile visits across the Perth metro area." }
+];
+
+const SERVICE_LINKS = [
+  { name: "Workers Compensation & MVA", page: "workers-compensation-mva.dc.html", desc: "Work injury & motor vehicle accident claims.", icon: h('<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="#E15B1F" stroke-width="2"/><path d="M8 7V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M3 13h18" stroke="#E15B1F" stroke-width="2"/></svg>') },
+  { name: "NDIS", page: "ndis.dc.html", desc: "Plan & self-managed participant support.", icon: h('<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="#E15B1F" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') },
+  { name: "DVA", page: "dva.dc.html", desc: "Support for veterans & DVA card holders.", icon: h('<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21 7.5 13.5 2 9h7z" stroke="#E15B1F" stroke-width="2" stroke-linejoin="round"/></svg>') },
+  { name: "Income Protection", page: "income-protection.dc.html", desc: "Exercise therapy while on a claim.", icon: h('<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-8.5C.5 9 2 5 6 5c2 0 3.5 1.5 4 2.5.5-1 2-2.5 4-2.5 4 0 5.5 4 3.5 7.5C19 16.65 12 21 12 21z" stroke="#E15B1F" stroke-width="2" stroke-linejoin="round"/></svg>') },
+  { name: "Private Health", page: "private-health.dc.html", desc: "Claim sessions via extras cover.", icon: h('<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#E15B1F" stroke-width="2"/><path d="M12 8v8M8 12h8" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') },
+  { name: "Medicare / Care Plans", page: "medicare-care-plans.dc.html", desc: "GP Chronic Disease Management Plans.", icon: h('<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="#E15B1F" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') }
+];
+
+class Component extends DCLogic {
+  state = { isMobile: false, menuOpen: false, openFaq: null, servicesOpen: false, mobileServicesOpen: false };
+
+  componentDidMount() {
+    this.mq = window.matchMedia('(max-width: 900px)');
+    this._onChange = (e) => { if (!e.matches) document.body.style.overflow = ''; this.setState({ isMobile: e.matches, menuOpen: e.matches ? this.state.menuOpen : false }); };
+    this.mq.addEventListener('change', this._onChange);
+    this.setState({ isMobile: this.mq.matches });
+    this.trackRef = React.createRef();
+    requestAnimationFrame(() => this._setupReveal());
+  }
+
+  componentWillUnmount() {
+    if (this.mq) this.mq.removeEventListener('change', this._onChange);
+    if (this._revealIO) this._revealIO.disconnect();
+  }
+
+  _setupReveal() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const targets = [];
+    document.querySelectorAll('div').forEach(div => {
+      const cs = getComputedStyle(div);
+      if (cs.display === 'grid' && div.children.length >= 2 && div.children.length <= 10) {
+        Array.from(div.children).forEach((child, i) => {
+          child.style.transitionDelay = Math.min(i * 0.06, 0.42) + 's';
+          targets.push(child);
+        });
+      } else if (div.style.textAlign === 'center' && div.querySelector('h2')) {
+        targets.push(div);
+      }
+    });
+    document.querySelectorAll('[style*="aspect-ratio"]').forEach(el => targets.push(el));
+    targets.forEach(el => {
+      if (el._revealSetup) return;
+      el._revealSetup = true;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(22px)';
+      if (!el.style.transition) el.style.transition = 'opacity 0.65s cubic-bezier(.16,.84,.44,1), transform 0.65s cubic-bezier(.16,.84,.44,1)';
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+    targets.forEach(el => io.observe(el));
+    this._revealIO = io;
+  }
+
+  renderVals() {
+    const openFaq = this.state.openFaq;
+    return {
+      isMobile: this.state.isMobile,
+      isDesktop: !this.state.isMobile,
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => { const next = !s.menuOpen; document.body.style.overflow = next ? 'hidden' : ''; return { menuOpen: next, mobileServicesOpen: false }; }),
+      servicesOpen: this.state.servicesOpen,
+      servicesChevron: this.state.servicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      toggleServices: () => this.setState(s => ({ servicesOpen: !s.servicesOpen })),
+      closeServices: () => this.setState({ servicesOpen: false }),
+      mobileServicesOpen: this.state.mobileServicesOpen,
+      mobileServicesChevron: this.state.mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      toggleMobileServices: () => this.setState(s => ({ mobileServicesOpen: !s.mobileServicesOpen })),
+      serviceLinks: SERVICE_LINKS,
+      heroBadges: ["No referral needed for private clients", "Clinic & mobile visits", "Workers Comp / NDIS / DVA welcome"],
+      conditions: CONDITIONS,
+      services: SERVICES,
+      processSteps: PROCESS_STEPS,
+      mobileBenefits: [
+        "No need to arrange transport or find parking",
+        "One-on-one attention in a familiar environment",
+        "Ideal for reduced mobility, older adults or busy schedules",
+        "Same qualified, evidence-based programs as in-clinic"
+      ],
+      whyUs: WHY_US,
+      testimonials: TESTIMONIALS,
+      trackRef: this.trackRef,
+      scrollPrev: () => { if (this.trackRef && this.trackRef.current) this.trackRef.current.scrollBy({ left: -340, behavior: 'smooth' }); },
+      scrollNext: () => { if (this.trackRef && this.trackRef.current) this.trackRef.current.scrollBy({ left: 340, behavior: 'smooth' }); },
+      faqs: FAQS.map((f, i) => ({
+        q: f.q,
+        a: f.a,
+        open: openFaq === i,
+        iconWrapStyle: { width: 28, height: 28, borderRadius: 999, background: '#F7F5F1', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transform: openFaq === i ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' },
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? null : i }))
+      }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>

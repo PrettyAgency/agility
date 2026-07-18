@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="Medicare / Care Plans exercise physiology in Perth — Agility Rehabilitation accepts GP Chronic Disease Management Plans (EPC referrals) at East Victoria Park and Kelmscott."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+  body { margin: 0; -webkit-font-smoothing: antialiased; }
+  a { color: #E15B1F; text-decoration: none; }
+  a:hover { color: #B84719; }
+  * { box-sizing: border-box; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes megaFade { from { opacity: 0; transform: translate(-50%, -6px); } to { opacity: 1; transform: translate(-50%, 0); } }
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes overlayFade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes linkIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="0,0" style="display:block;width:0;height:0;overflow:hidden;position:absolute;"></x-import>
+
+<div style="font-family: Inter, sans-serif; color: #1F2937; background: #FFFFFF; overflow-x: hidden;">
+
+  <div style="background: #1F2937; color: #E9E4DD;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 8px clamp(20px, 5vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 13px; flex-wrap: wrap;">
+      <span style="opacity: 0.85;">Perth clinics: East Victoria Park &amp; Kelmscott — plus mobile visits</span>
+      <a href="tel:0861628145" style="color: #FFB088; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.11 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.66 2.62a2 2 0 0 1-.45 2.11L8.09 9.63a16 16 0 0 0 6 6l1.18-1.18a2 2 0 0 1 2.11-.45c.84.32 1.72.54 2.62.66A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        (08) 6162 8145
+      </a>
+    </div>
+  </div>
+
+  <header style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.94); backdrop-filter: blur(10px); border-bottom: 1px solid #E9E4DD;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 14px clamp(20px, 5vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+      <a href="home.dc.html" style="display: flex; align-items: center; gap: 10px;">
+        <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M6 28L18 8" stroke="#E15B1F" stroke-width="6" stroke-linecap="round"/><path d="M16 28L28 8" stroke="#1F2937" stroke-width="6" stroke-linecap="round"/><path d="M26 28L34 14" stroke="#E15B1F" stroke-width="6" stroke-linecap="round" opacity="0.55"/></svg>
+        <span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: 0.01em; color: #1F2937;">AGILITY</span>
+      </a>
+
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <nav style="display: flex; align-items: center; gap: 30px;">
+          <a href="about.dc.html" style="color: #1F2937; font-weight: 600; font-size: 15px; padding-bottom: 4px; background-image: linear-gradient(90deg, #E15B1F, #E15B1F); background-size: 0% 2px; background-repeat: no-repeat; background-position: left bottom; transition: background-size 0.3s ease, color 0.2s ease;" style-hover="color: #E15B1F; background-size: 100% 2px;">About</a>
+          <div style="position: relative;">
+            <button onClick="{{ toggleServices }}" aria-expanded="{{ servicesOpen }}" style="display: flex; align-items: center; gap: 6px; background: transparent; border: none; cursor: pointer; color: #E15B1F; font-weight: 700; font-size: 15px; font-family: Inter, sans-serif; padding: 0;">
+              Services
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="transform: {{ servicesChevron }}; transition: transform 0.2s ease;"><path d="M6 9l6 6 6-6" stroke="#E15B1F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <sc-if value="{{ servicesOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="display: contents;">
+                <div onClick="{{ closeServices }}" style="position: fixed; inset: 0; z-index: 69;"></div>
+                <div style="position: absolute; top: calc(100% + 18px); left: 50%; transform: translateX(-50%); z-index: 70; width: 640px; background: #fff; border-radius: 20px; box-shadow: 0 24px 56px rgba(31,41,55,0.18); border: 1px solid #ECE6DD; padding: 20px; display: grid; grid-template-columns: 220px 1fr; gap: 18px; animation: megaFade 0.18s ease both;">
+                  <a href="exercise-physiology.dc.html" onClick="{{ closeServices }}" style="display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; background: #F7F5F1;">
+                    <div style="aspect-ratio: 16/10; overflow: hidden;"><img src="images/gym-based.jpg" alt="" style="width:100%;height:100%;object-fit:cover;"/></div>
+                    <div style="padding: 14px 16px;">
+                      <div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 15px; color: #1F2937; margin-bottom: 4px;">Exercise Physiology</div>
+                      <div style="font-size: 12.5px; color: #5B6472; line-height: 1.5;">Our core service — assessment, program design &amp; 1:1 sessions.</div>
+                    </div>
+                  </a>
+                  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px;">
+                    <sc-for list="{{ serviceLinks }}" as="s" hint-placeholder-count="6">
+                      <a href="{{ s.page }}" onClick="{{ closeServices }}" style="display: flex; align-items: flex-start; gap: 10px; padding: 10px; border-radius: 10px; {{ s.activeStyle }}" style-hover="background: #F7F5F1;">
+                        <div style="width: 34px; height: 34px; border-radius: 9px; background: #FBEAE0; display: flex; align-items: center; justify-content: center; flex-shrink: 0;" dangerouslySetInnerHTML="{{ s.icon }}"></div>
+                        <div>
+                          <div style="font-weight: 700; font-size: 13.5px; color: #1F2937;">{{ s.name }}</div>
+                          <div style="font-size: 11.5px; color: #8A8478; line-height: 1.4; margin-top: 2px;">{{ s.desc }}</div>
+                        </div>
+                      </a>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+          <a href="contact.dc.html#locations" style="color: #1F2937; font-weight: 600; font-size: 15px; padding-bottom: 4px; background-image: linear-gradient(90deg, #E15B1F, #E15B1F); background-size: 0% 2px; background-repeat: no-repeat; background-position: left bottom; transition: background-size 0.3s ease, color 0.2s ease;" style-hover="color: #E15B1F; background-size: 100% 2px;">Locations</a>
+          <a href="contact.dc.html" style="color: #1F2937; font-weight: 600; font-size: 15px; padding-bottom: 4px; background-image: linear-gradient(90deg, #E15B1F, #E15B1F); background-size: 0% 2px; background-repeat: no-repeat; background-position: left bottom; transition: background-size 0.3s ease, color 0.2s ease;" style-hover="color: #E15B1F; background-size: 100% 2px;">Contact</a>
+          <a href="contact.dc.html#book" style="background: #E15B1F; color: #fff; font-weight: 700; font-size: 15px; padding: 12px 22px; border-radius: 999px; box-shadow: 0 8px 20px rgba(225,91,31,0.28); white-space: nowrap;" style-hover="background: #B84719; transform: translateY(-1px);">Book Appointment</a>
+        </nav>
+      </sc-if>
+
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #E9E4DD; background: #fff; display: flex; align-items: center; justify-content: center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="#1F2937" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </sc-if>
+    </div>
+
+  </header>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 100; background: linear-gradient(165deg, #FFFFFF 0%, #FDF3EC 100%); display: flex; flex-direction: column; animation: overlayFade 0.35s cubic-bezier(.16,.84,.44,1) both; overflow-y: auto;">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 18px clamp(20px, 5vw, 48px);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <svg width="30" height="30" viewBox="0 0 40 40" fill="none"><path d="M6 28L18 8" stroke="#E15B1F" stroke-width="6" stroke-linecap="round"/><path d="M16 28L28 8" stroke="#1F2937" stroke-width="6" stroke-linecap="round"/><path d="M26 28L34 14" stroke="#E15B1F" stroke-width="6" stroke-linecap="round" opacity="0.55"/></svg>
+          <span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 19px; color: #1F2937;">AGILITY</span>
+        </div>
+        <button onClick="{{ toggleMenu }}" aria-label="Close menu" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #E9E4DD; background: #fff; display: flex; align-items: center; justify-content: center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#1F2937" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <nav style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 8px clamp(20px, 5vw, 48px) 24px; gap: 2px;">
+        <a href="about.dc.html" style="font-family: Manrope, sans-serif; font-weight: 600; font-size: clamp(30px, 9vw, 40px); color: #1F2937; padding: 14px 0; border-bottom: 1px solid #ECE6DD; display: flex; align-items: center; justify-content: space-between; animation: linkIn 0.5s cubic-bezier(.16,.84,.44,1) both; animation-delay: 0.05s;">
+          About
+          <span style="font-size: 13px; font-weight: 700; color: #C7C0B4;">01</span>
+        </a>
+        <div style="animation: linkIn 0.5s cubic-bezier(.16,.84,.44,1) both; animation-delay: 0.1s; border-bottom: 1px solid #ECE6DD;">
+          <button onClick="{{ toggleMobileServices }}" style="width: 100%; display: flex; align-items: center; justify-content: space-between; background: transparent; border: none; color: #E15B1F; font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(30px, 9vw, 40px); padding: 14px 0; cursor: pointer;">
+            Services
+            <span style="display:flex; align-items:center; gap: 10px;">
+              <span style="font-size: 13px; font-weight: 700; color: #C7C0B4;">02</span>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="transform: {{ mobileServicesChevron }}; transition: transform 0.25s ease; flex-shrink: 0;"><path d="M6 9l6 6 6-6" stroke="#E15B1F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </button>
+          <sc-if value="{{ mobileServicesOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 18px; animation: slideDown 0.25s ease both;">
+              <a href="exercise-physiology.dc.html" style="color: #5B6472; font-weight: 600; font-size: 17px; padding: 10px 4px; min-height: 44px; display: flex; align-items: center;">Exercise Physiology</a>
+              <sc-for list="{{ serviceLinks }}" as="s" hint-placeholder-count="6">
+                <a href="{{ s.page }}" style="color: {{ s.mobileColor }}; font-weight: {{ s.mobileWeight }}; font-size: 16px; padding: 10px 4px; min-height: 44px; display: flex; align-items: center;">{{ s.name }}</a>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <a href="contact.dc.html#locations" style="font-family: Manrope, sans-serif; font-weight: 600; font-size: clamp(30px, 9vw, 40px); color: #1F2937; padding: 14px 0; border-bottom: 1px solid #ECE6DD; display: flex; align-items: center; justify-content: space-between; animation: linkIn 0.5s cubic-bezier(.16,.84,.44,1) both; animation-delay: 0.15s;">
+          Locations
+          <span style="font-size: 13px; font-weight: 700; color: #C7C0B4;">03</span>
+        </a>
+        <a href="contact.dc.html" style="font-family: Manrope, sans-serif; font-weight: 600; font-size: clamp(30px, 9vw, 40px); color: #1F2937; padding: 14px 0; display: flex; align-items: center; justify-content: space-between; animation: linkIn 0.5s cubic-bezier(.16,.84,.44,1) both; animation-delay: 0.2s;">
+          Contact
+          <span style="font-size: 13px; font-weight: 700; color: #C7C0B4;">04</span>
+        </a>
+      </nav>
+      <div style="padding: 20px clamp(20px, 5vw, 48px) clamp(28px, 6vw, 40px); border-top: 1px solid #ECE6DD; display: flex; flex-direction: column; gap: 14px; animation: linkIn 0.5s cubic-bezier(.16,.84,.44,1) both; animation-delay: 0.3s;">
+        <a href="tel:0861628145" style="display: flex; align-items: center; gap: 10px; color: #1F2937; font-weight: 700; font-size: 17px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.11 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.66 2.62a2 2 0 0 1-.45 2.11L8.09 9.63a16 16 0 0 0 6 6l1.18-1.18a2 2 0 0 1 2.11-.45c.84.32 1.72.54 2.62.66A2 2 0 0 1 22 16.92z" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          (08) 6162 8145
+        </a>
+        <a href="contact.dc.html#book" style="background: #E15B1F; color: #fff; font-weight: 700; font-size: 17px; padding: 16px 24px; border-radius: 999px; text-align: center; box-shadow: 0 12px 28px rgba(225,91,31,0.3);">Book Appointment</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <div style="max-width: 1280px; margin: 0 auto; padding: 18px clamp(20px, 5vw, 48px) 0; font-size: 13.5px; color: #8A8478;">
+    <a href="exercise-physiology.dc.html" style="color: #8A8478; font-weight: 600;">Services</a> / <span style="color: #1F2937; font-weight: 600;">Medicare / Care Plans</span>
+  </div>
+
+  <section style="position: relative; padding: clamp(32px, 6vw, 64px) clamp(20px, 5vw, 48px) clamp(48px, 8vw, 88px); background: linear-gradient(180deg, #FDF3EC 0%, #FFFFFF 72%);">
+    <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: minmax(320px, 1fr) minmax(320px, 1.05fr); gap: clamp(32px, 5vw, 64px); align-items: center;">
+      <div style="animation: fadeUp 0.7s ease both;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #F1D9C8; color: #B84719; font-weight: 700; font-size: 13px; padding: 8px 16px; border-radius: 999px; margin-bottom: 24px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="#B84719" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="#B84719" stroke-width="2" stroke-linecap="round"/></svg>
+          Medicare / Care Plans
+        </div>
+        <h1 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(2.1rem, 4.2vw, 3.2rem); line-height: 1.1; letter-spacing: -0.02em; color: #1F2937; margin: 0 0 20px;">Subsidised sessions through your GP care plan</h1>
+        <p style="font-size: clamp(1.02rem, 1.2vw, 1.15rem); line-height: 1.7; color: #5B6472; max-width: 540px; margin: 0 0 32px;">If you're living with a chronic health condition or injury, you may be eligible for Medicare benefits towards Exercise Physiology. A referral from your GP — a Chronic Disease Management Plan (EPC) — gives access to subsidised sessions each calendar year.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px;">
+          <a href="contact.dc.html#book" style="background: #E15B1F; color: #fff; font-weight: 700; font-size: 16px; padding: 16px 30px; border-radius: 999px; box-shadow: 0 12px 28px rgba(225,91,31,0.3);" style-hover="background: #B84719; transform: translateY(-2px);">Book an Appointment</a>
+          <a href="tel:0861628145" style="background: #fff; color: #1F2937; font-weight: 700; font-size: 16px; padding: 16px 30px; border-radius: 999px; border: 2px solid #1F2937;" style-hover="border-color: #E15B1F; color: #E15B1F;">Call (08) 6162 8145</a>
+        </div>
+      </div>
+      <div style="border-radius: 28px; overflow: hidden; box-shadow: 0 30px 60px rgba(31,41,55,0.16); aspect-ratio: 4/4.2;">
+        <image-slot id="mc-hero" shape="rect" src="images/exphys-cardiac-stress-test.jpg" placeholder="Exercise physiologist reviewing a GP care plan referral with a patient" style="width:100%;height:100%;"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: clamp(48px, 7vw, 88px) clamp(20px, 5vw, 48px);">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <div style="max-width: 680px; margin: 0 auto 44px; text-align: center;">
+        <div style="color: #E15B1F; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">How it works</div>
+        <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.7rem, 2.8vw, 2.2rem); color: #1F2937; margin: 0;">Getting your GP referral</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+        <div style="background: #F7F5F1; border: 1px solid #ECE6DD; border-radius: 20px; padding: 28px 24px;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: #FBEAE0; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#E15B1F" stroke-width="2" stroke-linejoin="round"/></svg></div>
+          <h3 style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; color: #1F2937; margin: 0 0 8px;">Talk to Your GP</h3>
+          <p style="font-size: 14px; line-height: 1.6; color: #5B6472; margin: 0;">Ask about a Chronic Disease Management (EPC) referral for Exercise Physiology.</p>
+        </div>
+        <div style="background: #F7F5F1; border: 1px solid #ECE6DD; border-radius: 20px; padding: 28px 24px;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: #FBEAE0; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#E15B1F" stroke-width="2"/></svg></div>
+          <h3 style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; color: #1F2937; margin: 0 0 8px;">Bring It to Us</h3>
+          <p style="font-size: 14px; line-height: 1.6; color: #5B6472; margin: 0;">Bring your referral to your first session — we'll take care of the Medicare claim.</p>
+        </div>
+        <div style="background: #F7F5F1; border: 1px solid #ECE6DD; border-radius: 20px; padding: 28px 24px;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: #FBEAE0; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#E15B1F" stroke-width="2"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3 style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; color: #1F2937; margin: 0 0 8px;">Start Your Program</h3>
+          <p style="font-size: 14px; line-height: 1.6; color: #5B6472; margin: 0;">We'll design an individualised exercise plan to manage your condition and build long-term function.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="locations" style="padding: clamp(48px, 7vw, 88px) clamp(20px, 5vw, 48px); background: #F7F5F1; scroll-margin-top: 90px;">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <div style="max-width: 640px; margin: 0 auto 44px; text-align: center;">
+        <div style="color: #E15B1F; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">Locations</div>
+        <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.7rem, 2.8vw, 2.2rem); color: #1F2937; margin: 0;">Care plan sessions from two Perth clinics</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+        <div style="background: #fff; border-radius: 20px; padding: 26px; display: flex; align-items: center; gap: 16px;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: #F7F5F1; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12z" stroke="#E15B1F" stroke-width="2"/><circle cx="12" cy="9" r="2.5" stroke="#E15B1F" stroke-width="2"/></svg></div>
+          <div><h3 style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 16.5px; color: #1F2937; margin: 0 0 4px;">East Victoria Park</h3><p style="font-size: 14px; color: #5B6472; margin: 0;">The Leisurelife Centre, 34 Kent St</p></div>
+        </div>
+        <div style="background: #fff; border-radius: 20px; padding: 26px; display: flex; align-items: center; gap: 16px;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: #F7F5F1; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12z" stroke="#E15B1F" stroke-width="2"/><circle cx="12" cy="9" r="2.5" stroke="#E15B1F" stroke-width="2"/></svg></div>
+          <div><h3 style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 16.5px; color: #1F2937; margin: 0 0 4px;">Kelmscott</h3><p style="font-size: 14px; color: #5B6472; margin: 0;">Inside Kelmscott Chiropractic, 6 Page Rd</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 48px);">
+    <div style="max-width: 1280px; margin: 0 auto; background: linear-gradient(120deg, #1F2937 0%, #33210F 130%); border-radius: 32px; padding: clamp(40px, 6vw, 72px); position: relative; overflow: hidden; text-align: center;">
+      <div style="position: absolute; top: -60px; right: -60px; width: 260px; height: 260px; background: #E15B1F; border-radius: 50%; opacity: 0.18;"></div>
+      <div style="position: absolute; bottom: -80px; left: -40px; width: 220px; height: 220px; background: #E15B1F; border-radius: 50%; opacity: 0.12;"></div>
+      <h2 style="font-family: Manrope, sans-serif; font-weight: 800; font-size: clamp(1.7rem, 3.2vw, 2.4rem); color: #fff; margin: 0 0 16px; position: relative;">Have a referral ready?</h2>
+      <p style="font-size: 16px; color: #D8DEE7; max-width: 520px; margin: 0 auto 32px; position: relative;">Book your first session and bring it along — we'll handle the rest.</p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; position: relative;">
+        <a href="contact.dc.html#book" style="background: #E15B1F; color: #fff; font-weight: 700; font-size: 16px; padding: 16px 32px; border-radius: 999px; box-shadow: 0 12px 28px rgba(225,91,31,0.35);" style-hover="background: #ff7a3d;">Book an Appointment</a>
+        <a href="tel:0861628145" style="background: transparent; color: #fff; font-weight: 700; font-size: 16px; padding: 16px 32px; border-radius: 999px; border: 2px solid rgba(255,255,255,0.4);" style-hover="border-color: #fff;">Call (08) 6162 8145</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: #1F2937; color: #D8DEE7; padding: clamp(48px, 6vw, 72px) clamp(20px, 5vw, 48px) 28px;">
+    <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.12);">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+          <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M6 28L18 8" stroke="#E15B1F" stroke-width="6" stroke-linecap="round"/><path d="M16 28L28 8" stroke="#fff" stroke-width="6" stroke-linecap="round"/><path d="M26 28L34 14" stroke="#E15B1F" stroke-width="6" stroke-linecap="round" opacity="0.55"/></svg>
+          <span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 18px; color: #fff; letter-spacing: 0.01em;">AGILITY</span>
+        </div>
+        <p style="font-size: 14px; line-height: 1.7; color: #A9B0BC; max-width: 280px;">Perth's local exercise physiology team — evidence-based rehabilitation for injury, chronic disease and everyday life.</p>
+        <a href="https://www.facebook.com/Agilityrehabilitation" style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.08); margin-top: 16px; color: #fff;" style-hover="background: #E15B1F;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-9h3l1-4h-4V6.5C13 5.3 13.4 4.5 15.1 4.5H17V1.1C16.6 1 15.4 1 14 1c-2.9 0-4.9 1.8-4.9 5v3H6v4h3.1v9H13z"/></svg>
+        </a>
+      </div>
+      <div>
+        <div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em;">Locations</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14.5px;">
+          <a href="contact.dc.html#locations" style="color: #A9B0BC;" style-hover="color: #FFB088;">East Victoria Park</a>
+          <a href="contact.dc.html#locations" style="color: #A9B0BC;" style-hover="color: #FFB088;">Kelmscott</a>
+          <a href="exercise-physiology.dc.html#mobile" style="color: #A9B0BC;" style-hover="color: #FFB088;">Mobile Services</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em;">Navigation</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14.5px;">
+          <a href="home.dc.html" style="color: #A9B0BC;" style-hover="color: #FFB088;">Home</a>
+          <a href="about.dc.html" style="color: #A9B0BC;" style-hover="color: #FFB088;">About</a>
+          <a href="exercise-physiology.dc.html" style="color: #A9B0BC;" style-hover="color: #FFB088;">Exercise Physiology</a>
+          <a href="contact.dc.html" style="color: #A9B0BC;" style-hover="color: #FFB088;">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family: Manrope, sans-serif; font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em;">Contact</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14.5px;">
+          <a href="tel:0861628145" style="color: #A9B0BC;" style-hover="color: #FFB088;">(08) 6162 8145</a>
+          <a href="mailto:admin@agilityrehab.com.au" style="color: #A9B0BC;" style-hover="color: #FFB088;">admin@agilityrehab.com.au</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1280px; margin: 0 auto; padding-top: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: #7C8494;">
+      <span>© 2026 Agility Rehabilitation. All rights reserved.</span>
+      <span>Design concept for review — not a live site.</span>
+    </div>
+  </footer>
+
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 60; background: #fff; border-top: 1px solid #E9E4DD; box-shadow: 0 -8px 24px rgba(31,41,55,0.1); padding: 10px 16px; display: flex; gap: 10px;">
+      <a href="tel:0861628145" style="flex: 1; text-align: center; background: #fff; border: 2px solid #1F2937; color: #1F2937; font-weight: 700; font-size: 15px; padding: 12px; border-radius: 999px; min-height: 44px; display: flex; align-items: center; justify-content: center;">Call Now</a>
+      <a href="contact.dc.html#book" style="flex: 1; text-align: center; background: #E15B1F; color: #fff; font-weight: 700; font-size: 15px; padding: 12px; border-radius: 999px; min-height: 44px; display: flex; align-items: center; justify-content: center;">Book Now</a>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+function h(svg) { return { __html: svg }; }
+
+const SERVICE_LINKS = [
+  { name: "Workers Compensation & MVA", page: "workers-compensation-mva.dc.html", desc: "Work injury & motor vehicle accident claims.", active: false, icon: h('<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="#E15B1F" stroke-width="2"/><path d="M8 7V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M3 13h18" stroke="#E15B1F" stroke-width="2"/></svg>') },
+  { name: "NDIS", page: "ndis.dc.html", desc: "Plan & self-managed participant support.", active: false, icon: h('<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="#E15B1F" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="#E15B1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') },
+  { name: "DVA", page: "dva.dc.html", desc: "Support for veterans & DVA card holders.", active: false, icon: h('<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21 7.5 13.5 2 9h7z" stroke="#E15B1F" stroke-width="2" stroke-linejoin="round"/></svg>') },
+  { name: "Income Protection", page: "income-protection.dc.html", desc: "Exercise therapy while on a claim.", active: false, icon: h('<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-8.5C.5 9 2 5 6 5c2 0 3.5 1.5 4 2.5.5-1 2-2.5 4-2.5 4 0 5.5 4 3.5 7.5C19 16.65 12 21 12 21z" stroke="#E15B1F" stroke-width="2" stroke-linejoin="round"/></svg>') },
+  { name: "Private Health", page: "private-health.dc.html", desc: "Claim sessions via extras cover.", active: false, icon: h('<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#E15B1F" stroke-width="2"/><path d="M12 8v8M8 12h8" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') },
+  { name: "Medicare / Care Plans", page: "medicare-care-plans.dc.html", desc: "GP Chronic Disease Management Plans.", active: true, icon: h('<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="#E15B1F" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="#E15B1F" stroke-width="2" stroke-linecap="round"/></svg>') }
+];
+
+class Component extends DCLogic {
+  state = { isMobile: false, menuOpen: false, servicesOpen: false, mobileServicesOpen: false };
+
+  componentDidMount() {
+    this.mq = window.matchMedia('(max-width: 900px)');
+    this._onChange = (e) => { if (!e.matches) document.body.style.overflow = ''; this.setState({ isMobile: e.matches, menuOpen: e.matches ? this.state.menuOpen : false }); };
+    this.mq.addEventListener('change', this._onChange);
+    this.setState({ isMobile: this.mq.matches });
+    requestAnimationFrame(() => this._setupReveal());
+  }
+
+  componentWillUnmount() {
+    if (this.mq) this.mq.removeEventListener('change', this._onChange);
+    if (this._revealIO) this._revealIO.disconnect();
+  }
+
+  _setupReveal() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const targets = [];
+    document.querySelectorAll('div').forEach(div => {
+      const cs = getComputedStyle(div);
+      if (cs.display === 'grid' && div.children.length >= 2 && div.children.length <= 10) {
+        Array.from(div.children).forEach((child, i) => {
+          child.style.transitionDelay = Math.min(i * 0.06, 0.42) + 's';
+          targets.push(child);
+        });
+      } else if (div.style.textAlign === 'center' && div.querySelector('h2')) {
+        targets.push(div);
+      }
+    });
+    document.querySelectorAll('[style*="aspect-ratio"]').forEach(el => targets.push(el));
+    targets.forEach(el => {
+      if (el._revealSetup) return;
+      el._revealSetup = true;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(22px)';
+      if (!el.style.transition) el.style.transition = 'opacity 0.65s cubic-bezier(.16,.84,.44,1), transform 0.65s cubic-bezier(.16,.84,.44,1)';
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+    targets.forEach(el => io.observe(el));
+    this._revealIO = io;
+  }
+
+  renderVals() {
+    return {
+      isMobile: this.state.isMobile,
+      isDesktop: !this.state.isMobile,
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => { const next = !s.menuOpen; document.body.style.overflow = next ? 'hidden' : ''; return { menuOpen: next, mobileServicesOpen: false }; }),
+      servicesOpen: this.state.servicesOpen,
+      servicesChevron: this.state.servicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      toggleServices: () => this.setState(s => ({ servicesOpen: !s.servicesOpen })),
+      closeServices: () => this.setState({ servicesOpen: false }),
+      mobileServicesOpen: this.state.mobileServicesOpen,
+      mobileServicesChevron: this.state.mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      toggleMobileServices: () => this.setState(s => ({ mobileServicesOpen: !s.mobileServicesOpen })),
+      serviceLinks: SERVICE_LINKS.map(s => ({
+        ...s,
+        activeStyle: s.active ? 'background: #F7F5F1;' : '',
+        mobileColor: s.active ? '#E15B1F' : '#5B6472',
+        mobileWeight: s.active ? '700' : '600'
+      }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>
